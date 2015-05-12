@@ -30,16 +30,16 @@ var parse = function(fn) {
 
 };
 
-var angst = function(fn, argKeys) {
+var angst = function(fn, argNames) {
 
-  argKeys = argKeys || parse(fn);
+  argNames = argNames || parse(fn);
 
-  return function(argsMap, context) {
+  return function(argObj, context) {
     var args = [];
     var i = -1;
-    var len = argKeys.length;
+    var len = argNames.length;
     while (++i < len) {
-      args.push(argsMap[argKeys[i]]);
+      args.push(argObj[argNames[i]]);
     }
     return fn.apply(context, args);
   };

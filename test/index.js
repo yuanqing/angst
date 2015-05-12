@@ -55,7 +55,7 @@ test('angst.parse(fn)', function(t) {
 
 });
 
-test('angst(fn [, argKeys])', function(t) {
+test('angst(fn [, argNames])', function(t) {
 
   t.test('throws if `fn` is not a function', function(t) {
     t.throws(function() {
@@ -70,44 +70,44 @@ test('angst(fn [, argKeys])', function(t) {
     t.end();
   });
 
-  t.test('passes in arguments from `argsMap`', function(t) {
+  t.test('passes in arguments from `argObj`', function(t) {
     var arr = [];
     var fn = function(x, y) {
       arr.push([x, y]);
     };
-    var argsMap = {
+    var argObj = {
       x: 1,
       y: 2
     };
-    angst(fn)(argsMap);
+    angst(fn)(argObj);
     t.looseEqual(arr, [[1, 2]]);
     t.end();
   });
 
-  t.test('arguments not in `argsMap` are passed in as `undefined`', function(t) {
+  t.test('arguments not in `argObj` are passed in as `undefined`', function(t) {
     var arr = [];
     var fn = function(x, y) {
       arr.push([x, y]);
     };
-    var argsMap = {
+    var argObj = {
       x: 1
     };
-    angst(fn)(argsMap);
+    angst(fn)(argObj);
     t.looseEqual(arr, [[1, undefined]]);
     t.end();
   });
 
-  t.test('uses the keys in `argKeys`', function(t) {
+  t.test('uses argument names in `argNames`', function(t) {
     var arr = [];
     var fn = function(x, y) {
       arr.push([x, y]);
     };
-    var argKeys = ['a', 'b'];
-    var argsMap = {
-      x: 1, // because of `argKeys`, we need an argument named `a`, not `x`
+    var argNames = ['a', 'b'];
+    var argObj = {
+      x: 1, // because of `argNames`, we need an argument named `a`, not `x`
       b: 2
     };
-    angst(fn, argKeys)(argsMap);
+    angst(fn, argNames)(argObj);
     t.looseEqual(arr, [[undefined, 2]]);
     t.end();
   });
