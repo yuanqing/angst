@@ -22,7 +22,7 @@ console.log(angst(fn)(argObj)); //=> 3
 console.log(angst.parse(fn));   //=> ['x', 'y']
 ```
 
-More usage examples are in [the tests](https://github.com/yuanqing/angst/blob/master/test).
+More usage examples are in [the tests](https://github.com/yuanqing/angst/blob/master/test/index.js).
 
 ## API
 
@@ -50,6 +50,11 @@ Install via [npm](https://npmjs.com/):
 ```
 $ npm i --save angst
 ```
+
+## Changelog
+
+- 0.1.0
+  - Initial release
 
 ## License
 
