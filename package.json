@@ -1,0 +1,27 @@
+{
+  "name": "angst",
+  "version": "0.0.0",
+  "description": "Named arguments for JavaScript, à la AngularJS.",
+  "author": "Lim Yuan Qing",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yuanqing/angst.git"
+  },
+  "devDependencies": {
+    "istanbul": "^0.3.14",
+    "jshint": "^2.7.0",
+    "tape": "^4.0.0"
+  },
+  "scripts": {
+    "lint": "jshint --verbose index.js test/*.js",
+    "test": "rm -rf coverage && istanbul cover tape test/*.js",
+    "build": "npm run lint && npm test"
+  },
+  "keywords": [
+    "angular",
+    "arguments",
+    "function",
+    "named"
+  ]
+}
