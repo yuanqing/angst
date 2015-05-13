@@ -2,7 +2,9 @@
 
 > Named arguments for JavaScript, &agrave; la [AngularJS](https://angularjs.org/).
 
-Note: Most of this module&rsquo;s [core logic](https://github.com/angular/angular.js/blob/6874cca1589a2a4c28f3caa036897c70e57763ef/src/auto/injector.js#L65-L117) and [tests](https://github.com/angular/angular.js/blob/ebde4681bd55683544611a5d358a9be916de1f21/test/auto/injectorSpec.js#L168-L247) were adapted from AngularJS.
+Note that most of this module&rsquo;s core logic and tests were adapted from AngularJS:
+- [`src/auto/injector`](https://github.com/angular/angular.js/blob/6874cca1589a2a4c28f3caa036897c70e57763ef/src/auto/injector.js#L65-L117)
+- [`test/auto/injectorSpec.js`](https://github.com/angular/angular.js/blob/ebde4681bd55683544611a5d358a9be916de1f21/test/auto/injectorSpec.js#L168-L247)
 
 ## Usage
 
