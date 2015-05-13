@@ -1,7 +1,7 @@
 {
   "name": "angst",
   "version": "0.1.1",
-  "description": "Named arguments for JavaScript, à la AngularJS.",
+  "description": "Named arguments for JavaScript, adapted from AngularJS.",
   "author": "Lim Yuan Qing",
   "license": "MIT",
   "repository": {
