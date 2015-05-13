@@ -6,11 +6,15 @@ var FN_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 var FN_ARGS = /^function\s*[^\(]*\(\s*([^\)]*)\)/m;
 var FN_ARGS_SPLIT = /,/;
 
-var parse = function(fn) {
-
+var assertIsFunction = function(fn) {
   if (typeof fn !== 'function') {
     throw new Error('not a function');
   }
+};
+
+var parse = function(fn) {
+
+  assertIsFunction(fn);
 
   var args = fn.toString()
                .replace(FN_COMMENTS, '')
@@ -33,6 +37,7 @@ var parse = function(fn) {
 var angst = function(fn, argNames) {
 
   if (typeof argNames !== 'undefined') {
+    assertIsFunction(fn);
     argNames = [].concat(argNames);
   } else {
     argNames = parse(fn);

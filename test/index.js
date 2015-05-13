@@ -58,10 +58,18 @@ test('angst.parse(fn)', function(t) {
 test('angst(fn [, argNames])', function(t) {
 
   t.test('throws if `fn` is not a function', function(t) {
-    t.throws(function() {
-      angst({});
+    t.test('without `argNames`', function(t) {
+      t.throws(function() {
+        angst({});
+      });
+      t.end();
     });
-    t.end();
+    t.test('with `argNames`', function(t) {
+      t.throws(function() {
+        angst({}, ['x']);
+      });
+      t.end();
+    });
   });
 
   t.test('returns a function', function(t) {
@@ -71,17 +79,32 @@ test('angst(fn [, argNames])', function(t) {
   });
 
   t.test('passes in arguments from `argObj`', function(t) {
-    var arr = [];
-    var fn = function(x, y) {
-      arr.push([x, y]);
-    };
-    var argObj = {
-      x: 1,
-      y: 2
-    };
-    angst(fn)(argObj);
-    t.looseEqual(arr, [[1, 2]]);
-    t.end();
+    t.test('without `context`', function(t) {
+      var arr = [];
+      var fn = function(x, y) {
+        arr.push([this, x, y]);
+      };
+      var argObj = {
+        x: 1,
+        y: 2
+      };
+      angst(fn)(argObj);
+      t.looseEqual(arr, [[undefined, 1, 2]]);
+      t.end();
+    });
+    t.test('with `context`', function(t) {
+      var arr = [];
+      var fn = function(x, y) {
+        arr.push([this, x, y]);
+      };
+      var argObj = {
+        x: 1,
+        y: 2
+      };
+      angst(fn)(argObj, 'foo');
+      t.looseEqual(arr, [['foo', 1, 2]]);
+      t.end();
+    });
   });
 
   t.test('arguments not in `argObj` are passed in as `undefined`', function(t) {
