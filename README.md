@@ -1,6 +1,6 @@
 # angst [![npm Version](http://img.shields.io/npm/v/angst.svg?style=flat)](https://www.npmjs.org/package/angst) [![Build Status](https://img.shields.io/travis/yuanqing/angst.svg?style=flat)](https://travis-ci.org/yuanqing/angst) [![Coverage Status](https://img.shields.io/coveralls/yuanqing/angst.svg?style=flat)](https://coveralls.io/r/yuanqing/angst)
 
-> Named arguments for JavaScript, adapted from [AngularJS](https://angularjs.org/).
+> Named arguments for JavaScript, adapted from [AngularJS](https://github.com/angular/angular.js).
 
 ## Usage
 
@@ -30,7 +30,7 @@ console.log(angst(gn)(argObj)); //=> 'z is undefined'
 
 Because code minification mangles variable names, **the above will work as expected only when unminified.** If we cannot guarantee this, we must pass in an additional string array of the function&rsquo;s argument names to `angst`. For example:
 
-```
+```js
 var argObj = {
   x: 1,
   y: 2
@@ -80,7 +80,7 @@ $ npm i --save angst
 
 ## Credit
 
-Most of this module&rsquo;s core logic and tests were adapted from the following:
+Most of this module&rsquo;s core logic and tests were adapted from AngularJS:
 - [`src/auto/injector`](https://github.com/angular/angular.js/blob/6874cca1589a2a4c28f3caa036897c70e57763ef/src/auto/injector.js#L65-L117)
 - [`test/auto/injectorSpec.js`](https://github.com/angular/angular.js/blob/ebde4681bd55683544611a5d358a9be916de1f21/test/auto/injectorSpec.js#L168-L247)
 
