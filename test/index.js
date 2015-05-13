@@ -1,6 +1,6 @@
 'use strict';
 
-// https://github.com/angular/angular.js/blob/ebde4681bd55683544611a5d358a9be916de1f21/test/auto/injectorSpec.js#L168-L247
+// Adapted from: https://github.com/angular/angular.js/blob/ebde4681bd55683544611a5d358a9be916de1f21/test/auto/injectorSpec.js#L168-L247
 
 var test = require('tape');
 var angst = require('..');
@@ -98,18 +98,33 @@ test('angst(fn [, argNames])', function(t) {
   });
 
   t.test('uses argument names in `argNames`', function(t) {
-    var arr = [];
-    var fn = function(x, y) {
-      arr.push([x, y]);
-    };
-    var argNames = ['a', 'b'];
-    var argObj = {
-      x: 1, // because of `argNames`, we need an argument named `a`, not `x`
-      b: 2
-    };
-    angst(fn, argNames)(argObj);
-    t.looseEqual(arr, [[undefined, 2]]);
-    t.end();
+    t.test('`argNames` is a string', function(t) {
+      var arr = [];
+      var fn = function(x) {
+        arr.push([x]);
+      };
+      var argNames = 'b';
+      var argObj = {
+        b: 2
+      };
+      angst(fn, argNames)(argObj);
+      t.looseEqual(arr, [[2]]);
+      t.end();
+    });
+    t.test('`argNames` is an array', function(t) {
+      var arr = [];
+      var fn = function(x, y) {
+        arr.push([x, y]);
+      };
+      var argNames = ['a', 'b'];
+      var argObj = {
+        x: 1, // because of `argNames`, we need an argument named `a`, not `x`
+        b: 2
+      };
+      angst(fn, argNames)(argObj);
+      t.looseEqual(arr, [[undefined, 2]]);
+      t.end();
+    });
   });
 
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-// https://github.com/angular/angular.js/blob/6874cca1589a2a4c28f3caa036897c70e57763ef/src/auto/injector.js#L65-L117
+// Adapted from: https://github.com/angular/angular.js/blob/6874cca1589a2a4c28f3caa036897c70e57763ef/src/auto/injector.js#L65-L117
 
 var FN_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 var FN_ARGS = /^function\s*[^\(]*\(\s*([^\)]*)\)/m;
@@ -32,7 +32,11 @@ var parse = function(fn) {
 
 var angst = function(fn, argNames) {
 
-  argNames = argNames || parse(fn);
+  if (typeof argNames !== 'undefined') {
+    argNames = [].concat(argNames);
+  } else {
+    argNames = parse(fn);
+  }
 
   return function(argObj, context) {
     var args = [];
